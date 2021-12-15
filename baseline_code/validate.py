@@ -10,7 +10,8 @@ from termcolor import colored
 from DataLoader import VideoQADataLoader
 from utils import todevice
 
-import model.HCRN as HCRN
+# import model.HCRN as HCRN
+from model import get_model
 
 from config import cfg, cfg_from_file
 
@@ -118,6 +119,7 @@ if __name__ == '__main__':
         cfg.dataset.appearance_feat = os.path.join(cfg.dataset.data_dir, cfg.dataset.appearance_feat.format(cfg.dataset.name))
         cfg.dataset.motion_feat = os.path.join(cfg.dataset.data_dir, cfg.dataset.motion_feat.format(cfg.dataset.name))
 
+    model_name = cfg.train.model_name
     test_loader_kwargs = {
         'question_type': cfg.dataset.question_type,
         'question_pt': cfg.dataset.test_question_pt,
@@ -131,7 +133,9 @@ if __name__ == '__main__':
     }
     test_loader = VideoQADataLoader(**test_loader_kwargs)
     model_kwargs.update({'vocab': test_loader.vocab})
-    model = HCRN.HCRNNetwork(**model_kwargs).to(device)
+    # model = HCRN.HCRNNetwork(**model_kwargs).to(device)
+    model = get_model(model_name)
+    model = model(**model_kwargs).to(device)
     new_state_dict = {}
     for k, v in loaded['state_dict'].items():
         new_state_dict[k.replace("module.", "")] = v
