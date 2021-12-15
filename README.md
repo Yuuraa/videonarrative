@@ -1,4 +1,4 @@
-# 2021 한국어 질의응답 AI 경진대회 - Baseline 코드 안내
+# 2021 [한국어 질의응답 AI 경진대회](http://ai-competition.kaist.ac.kr/competitions/outline) - Baseline 코드 안내
 ## 환경설정
 
 <aside>
@@ -33,6 +33,7 @@
 		ㄴ 대본O
 ```
 ### Test 데이터
+* correct_idx 값이 null로 설정되어 있음
 ```bash
 {사용자 지정 경로}/raw_data/test/원천데이터
 	ㄴ예능교양
@@ -350,3 +351,4 @@ dataset:
 ```bash
 python3 validate.py --cfg configs/video_narr.yml
 ```
+
