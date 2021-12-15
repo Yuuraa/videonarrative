@@ -82,7 +82,6 @@ def multichoice_encoding_data(args, questions,question_id, video_id, answers, an
     for idx, question in enumerate(questions):
         question_encoded = tokenizer.encode(question)
         questions_encoded.append(question_encoded)
-        questions_encoded.append(question_encoded)
         questions_len.append(len(question_encoded))
         questions_id.append(questions_id[idx])
         video_id_tbw.append(video_id[idx])
