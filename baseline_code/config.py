@@ -13,6 +13,8 @@ __C.multi_gpus = False
 __C.seed = 666
 # training options
 __C.train = edict()
+__C.train.model_name = ''
+__C.train.freeze_bert = False
 __C.train.restore = False
 __C.train.lr = 0.0001
 __C.train.batch_size = 32
@@ -40,7 +42,9 @@ __C.test.write_preds = False
 __C.test = dict(__C.test)
 # dataset options
 __C.dataset = edict()
-__C.dataset.name = 'tgif-qa' # ['tgif-qa', 'msrvtt-qa', 'msvd-qa']
+__C.dataset.name = 'video-narr' # ['tgif-qa', 'msrvtt-qa', 'msvd-qa']
+__C.dataset.text_feat = 'video-narr' # ['tgif-qa', 'msrvtt-qa', 'msvd-qa']
+__C.dataset.img_feat = 'video-narr' # ['tgif-qa', 'msrvtt-qa', 'msvd-qa']
 __C.dataset.question_type = 'none' #['frameqa', 'count', 'transition', 'action', 'none']
 __C.dataset.data_dir = ''
 __C.dataset.appearance_feat = '{}_{}_appearance_feat.h5'
@@ -94,6 +98,7 @@ def merge_cfg(yaml_cfg, cfg):
 
 def cfg_from_file(file_name):
     import yaml
+    print(file_name)
     with open(file_name, 'r') as f:
         yaml_cfg = edict(yaml.load(f))
 
